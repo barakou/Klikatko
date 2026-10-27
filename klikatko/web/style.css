@@ -236,7 +236,7 @@ body[data-step="2"] .grid{align-items:stretch}
 body[data-step="2"] .sticky-side{position:sticky;top:96px;display:grid;gap:24px}
 body[data-step="2"] .sticky-side .stamp{margin:0}
 
-/* bottom road: below the first screen, in view only after scrolling to the end */
+/* bottom road: just below the first screen; the first bit of scrolling brings it into view */
 main{min-height:calc(100vh - 72px)}
-.bottom-road{position:relative;height:170px;margin-top:min(300px,30vh);overflow:hidden}
+.bottom-road{position:relative;height:170px;margin-top:24px;overflow:hidden}
 .bottom-road svg{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
