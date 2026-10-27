@@ -4,6 +4,7 @@ import json
 import mimetypes
 import os
 import secrets
+import subprocess
 import sys
 import threading
 import webbrowser
@@ -13,7 +14,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 from uuid import uuid4
 
-from .export import generate, write_version
+from .export import cover_info, generate, template_cover_image, write_version
 from .model import ROOT, Store, catalog, safe_name
 
 
@@ -28,7 +29,26 @@ class Application:
     def state(self):
         return {'catalog': catalog(), 'projects': self.store.list('projects'),
                 'presets': self.store.list('presets'), 'output_dir': str(self.store.root / 'reports'),
-                'today': date.today().isoformat()}
+                'today': date.today().isoformat(), 'cover': cover_info()}
+
+    def cover_image(self, path):
+        """The project's own cover image (only from the app's image folder), else the template's."""
+        if not path:
+            return template_cover_image()
+        image = Path(path).resolve()
+        if image.parent != (self.store.root / 'images').resolve() or not image.is_file():
+            raise ValueError('Obrázek titulní strany není dostupný.')
+        return image.read_bytes()
+
+
+STATIC_TYPES = {'.woff2': 'font/woff2', '.ttf': 'font/ttf', '.png': 'image/png', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8'}
+
+
+def open_in_system(path):
+    if os.name == 'nt':
+        os.startfile(path)
+    else:
+        subprocess.Popen(['open' if sys.platform == 'darwin' else 'xdg-open', str(path)])
 
 
 def make_handler(app):
@@ -65,8 +85,14 @@ def make_handler(app):
                 if url.path in ('/app.js', '/style.css'):
                     path = ROOT / 'klikatko/web' / url.path[1:]
                     return self.send(200, path.read_bytes(), 'text/javascript; charset=utf-8' if path.suffix == '.js' else 'text/css; charset=utf-8')
+                if url.path.startswith('/static/'):
+                    static = (ROOT / 'klikatko/web/static').resolve()
+                    path = (static / url.path[len('/static/'):]).resolve()
+                    if static not in path.parents or path.suffix not in STATIC_TYPES or not path.is_file():
+                        return self.send(404, {'error': 'Nenalezeno.'})
+                    return self.send(200, path.read_bytes(), STATIC_TYPES[path.suffix])
                 if url.path == '/favicon.ico':
-                    return self.send(204, b'')
+                    return self.send(200, (ROOT / 'klikatko/web/static/logo.png').read_bytes(), 'image/png')
                 if not self.authorized():
                     return self.send(403, {'error': 'Obnovte stránku aplikace.'})
                 query = parse_qs(url.query)
@@ -85,6 +111,10 @@ def make_handler(app):
                             continue
                     drives = [f'{letter}:\\' for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if Path(f'{letter}:\\').exists()] if os.name == 'nt' else ['/']
                     return self.send(200, {'path': str(path), 'parent': str(path.parent), 'children': sorted(children, key=lambda x: x['name'].casefold()), 'drives': drives})
+                if url.path == '/api/cover':
+                    content = app.cover_image(query.get('path', [''])[0])
+                    kind = 'image/png' if content[1:4] == b'PNG' else 'image/webp' if content[8:12] == b'WEBP' else 'image/jpeg'
+                    return self.send(200, content, kind)
                 if url.path == '/api/download':
                     item = app.downloads.get(query.get('id', [''])[0])
                     if not item:
@@ -126,6 +156,12 @@ def make_handler(app):
                     ident = uuid4().hex
                     app.downloads[ident] = path
                     return self.send(200, {'id': ident, 'name': path.name, 'path': str(path), 'size': len(content)})
+                if route == '/api/open':
+                    item = app.downloads.get(data.get('id', ''))
+                    if not item or not item.is_file():
+                        raise ValueError('Soubor už není dostupný. Vytvořte dokument znovu.')
+                    open_in_system(item if data.get('target') == 'file' else item.parent)
+                    return self.send(200, {'ok': True})
                 return self.send(404, {'error': 'Nenalezeno.'})
             except (ValueError, OSError, KeyError, TypeError) as exc:
                 self.send(400, {'error': str(exc)})

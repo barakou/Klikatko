@@ -6,7 +6,7 @@ from pathlib import Path
 from docx import Document
 from docx.oxml.ns import qn
 
-from klikatko.export import TEMPLATE, generate, write_version
+from klikatko.export import TEMPLATE, cover_info, generate, template_cover_image, write_version
 
 
 class ExportTests(unittest.TestCase):
@@ -72,6 +72,19 @@ class ExportTests(unittest.TestCase):
             self.assertEqual(first.read_bytes(), b'first')
             self.assertEqual(second.read_bytes(), b'second')
             self.assertEqual(first.parent, Path(directory).resolve())
+
+    def test_write_version_keeps_dots_inside_the_name(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_version(b'x', directory, 'A-B Rekonstrukce Dlouhé ulice, II. etapa')
+            self.assertEqual(path.name, 'A-B Rekonstrukce Dlouhé ulice, II. etapa.docx')
+
+    def test_cover_info_reads_letterhead_from_template(self):
+        info = cover_info()
+        self.assertTrue(info['letterhead'][0][0]['text'].startswith('ING. JIŘÍ KOUDELKA'))
+        self.assertEqual(info['letterhead'][0][0]['size'], 24)
+        self.assertTrue(any(run['link'] for run in info['letterhead'][1]))
+        self.assertEqual(info['attachment'], 'Příloha A-B')
+        self.assertEqual(template_cover_image()[1:4], b'PNG')
 
 
 if __name__ == '__main__':

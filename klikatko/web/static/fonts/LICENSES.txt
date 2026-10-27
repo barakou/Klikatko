@@ -1,0 +1,4 @@
+Atkinson Hyperlegible Next - Braille Institute of America, SIL Open Font License 1.1
+  https://fonts.google.com/specimen/Atkinson+Hyperlegible+Next
+Osifont - ISO 3098 lettering for CAD, GPL with font exception
+  https://github.com/hikikomori82/osifont

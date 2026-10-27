@@ -26,6 +26,45 @@ def set_text(paragraph, text):
         paragraph.add_run(text)
 
 
+def paragraph_runs(paragraph, default_size=12):
+    """Text runs with their point size, weight and link flag; neighbours with equal formatting merged."""
+    runs = []
+    for run in paragraph._p.iter(qn('w:r')):
+        text = ''.join(t.text or '' for t in run.iter(qn('w:t')))
+        if not text:
+            continue
+        rpr = run.find(qn('w:rPr'))
+        size = rpr.find(qn('w:sz')) if rpr is not None else None
+        bold = rpr.find(qn('w:b')) if rpr is not None else None
+        style = {'size': int(size.get(qn('w:val'))) / 2 if size is not None else default_size,
+                 'bold': bold is not None and bold.get(qn('w:val')) not in ('0', 'false'),
+                 'link': run.getparent().tag == qn('w:hyperlink')}
+        if runs and all(runs[-1][key] == value for key, value in style.items()):
+            runs[-1]['text'] += text
+        else:
+            runs.append({'text': text, **style})
+    if runs:
+        runs[-1]['text'] = runs[-1]['text'].rstrip()
+    return runs
+
+
+def cover_info():
+    """Letterhead and fixed texts of the template's first page for the app's live preview."""
+    paragraphs = Document(TEMPLATE).paragraphs
+    return {'letterhead': [paragraph_runs(paragraphs[0]), paragraph_runs(paragraphs[1])],
+            'title': 'Průvodní list a souhrnná technická zpráva',
+            'attachment': paragraphs[7].text.strip()}
+
+
+def template_cover_image():
+    """Bytes of the image anchored on the template's first page."""
+    doc = Document(TEMPLATE)
+    blip = doc.paragraphs[6]._p.find('.//' + qn('a:blip'))
+    if blip is None:
+        raise ValueError('V předloze chybí obrázek titulní strany.')
+    return doc.part.related_parts[blip.get(qn('r:embed'))].blob
+
+
 def generate(project):
     project = validate_project(project, require_name=True)
     nodes = selected_nodes(project['selected'])
@@ -109,7 +148,9 @@ def write_version(content, directory, filename):
     folder = Path(directory).expanduser().resolve()
     if not folder.is_dir():
         raise ValueError('Výstupní složka neexistuje. Vyberte existující složku.')
-    stem = safe_name(Path(filename).stem)
+    # Strip only a real .docx suffix: "II. etapa" must not lose " etapa" as if it were an extension.
+    name = Path(filename).name
+    stem = safe_name(name[:-5] if name.lower().endswith('.docx') else name)
     for version in range(1, 10000):
         path = folder / (stem + (f'_{version:02d}' if version > 1 else '') + '.docx')
         try:
