@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="klikatko-token" content="__TOKEN__">
+<title>Klikátko — vaše zpráva, vaše osnova</title>
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="Klikátko, úvod"><span class="brand-icon">k<span>•</span></span><span>Klikátko<small>TECHNICKÉ ZPRÁVY</small></span></a>
+  <div class="sidebar-intro">Od první kapitoly<br>k hotové osnově.</div>
+  <button class="new-project" id="new-project"><span>＋</span> Nová zakázka</button>
+  <div class="nav-section"><span>VAŠE PRÁCE</span></div>
+  <button class="nav-item active" id="projects-button"><span class="nav-icon">▣</span> Uložené zakázky <span class="badge" id="projects-count">0</span></button>
+  <button class="nav-item" id="presets-button"><span class="nav-icon">▤</span> Moje předvolby <span class="badge" id="presets-count">0</span></button>
+  <div class="sidebar-note"><span class="note-mark">↳</span><p>Jednou vybrat.<br>Příště jen načíst.</p><small>Oblíbenou osnovu si uložte<br>jako vlastní předvolbu.</small></div>
+  <div class="sidebar-footer"><span class="online-dot"></span> Vše zůstává na tomto počítači<small>Žádný účet. Žádný cloud.</small></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><div class="breadcrumb">Pracovní prostor <span>/</span> <strong id="breadcrumb-name">Nová zakázka</strong></div><div class="save-state" id="save-state">Dosud neuloženo</div><button class="button outline small" id="save-project">Uložit zakázku</button></header>
+  <main>
+    <div class="page-heading"><div><div class="eyebrow">MÉNĚ FORMÁTOVÁNÍ. VÍCE PROJEKTOVÁNÍ.</div><h1>Připravte si zprávu<span>.</span></h1><p>Vyberte obsah. Vytvořte Word. Doplňte odborné detaily.</p></div><span class="version-tag">PRACOVNÍ VERZE 01</span></div>
+    <nav class="steps" aria-label="Příprava zprávy"><button class="step active" data-step="1"><span>1</span> Údaje zakázky</button><i></i><button class="step" data-step="2"><span>2</span> Výběr kapitol</button><i></i><button class="step" data-step="3"><span>3</span> Vytvořit Word</button></nav>
+    <div class="editor-grid">
+    <div class="editor">
+      <section class="panel" id="step-1">
+        <div class="panel-heading"><div><h2>Nejdřív pár základních údajů</h2><p>Do dokumentu je doplníme za vás.</p></div><span class="section-number">01</span></div>
+        <form id="project-form" novalidate>
+          <div class="form-grid">
+            <label class="full">Název stavby <span class="required">*</span><input id="name" name="name" placeholder="Např. Rekonstrukce Dlouhé ulice, II. etapa" required maxlength="220"></label>
+            <label>Číslo zakázky<input id="number" name="number" placeholder="Např. 26 10 01" maxlength="80"></label>
+            <label>Místo stavby<input id="location" name="location" placeholder="Obec, katastrální území…" maxlength="300"></label>
+            <label class="full">Stavebník / investor<input id="investor" name="investor" placeholder="Jméno nebo název a sídlo investora" maxlength="500"></label>
+            <label class="full">Druh dokumentace<input id="stage" name="stage" list="stages" placeholder="Zvolte nebo napište vlastní označení"><datalist id="stages"><option value="Dokumentace pro povolení záměru"><option value="Dokumentace pro provádění stavby"><option value="Dokumentace pro povolení stavebního záměru a realizaci"></datalist></label>
+            <label>Zpracovatel<input id="author" name="author" placeholder="Jméno zpracovatele"></label>
+            <label>Datum na titulní straně<input id="date" name="date" placeholder="Např. říjen 2026"></label>
+          </div>
+          <div class="cover-setting"><span class="cover-icon">▧</span><div><strong>Vaše známá titulní strana</strong><p id="image-status">Zachováme rozložení a obrázek z dodané předlohy.</p><button type="button" class="text-button" id="choose-image">Změnit obrázek</button><button type="button" class="text-button hidden" id="reset-image">Vrátit původní</button><input class="hidden" type="file" id="image-file" accept="image/png,image/jpeg,image/webp"></div></div>
+        </form>
+        <div class="panel-bottom"><span>* Povinný údaj</span><button class="button primary" data-step="2">Vybrat kapitoly <span>→</span></button></div>
+      </section>
+      <section class="panel hidden" id="step-2">
+        <div class="panel-heading"><div><h2>Co bude ve zprávě?</h2><p>Rozbalte osnovu a vyberte i ty nejmenší podkapitoly.</p></div><span class="section-number">02</span></div>
+        <div class="preset-bar"><span>Začněte vlastní předvolbou</span><div><button class="button outline small" id="load-preset">Načíst předvolbu</button><button class="text-button" id="save-preset">＋ Uložit výběr</button></div></div>
+        <div class="tree-toolbar"><label class="search"><span>⌕</span><input id="search" placeholder="Hledat kapitolu nebo téma…" aria-label="Hledat v osnově"><kbd>/</kbd></label><label class="switch-label"><input type="checkbox" id="selected-only"> Jen vybrané</label></div>
+        <div class="tree-actions"><span id="selection-label">Načítání osnovy…</span><div><button class="text-button" id="select-all">Vybrat vše</button><button class="text-button muted" id="clear-selection">Zrušit výběr</button></div></div>
+        <div id="chapter-tree" class="chapter-tree" aria-label="Osnova zprávy"></div>
+        <div class="chapter-help" id="chapter-help"><span>i</span><div><strong id="help-title">Každý detail má své místo</strong><p id="help-text">Šipka rozbalí podkapitoly. Políčko vybere celou větev. Kliknutím na název zobrazíte, co se bude doplňovat.</p></div></div>
+        <div class="source-note">Osnova podle dodaného vzoru. Právní úplnost a vhodnost výběru ověřuje zpracovatel.</div>
+        <div class="panel-bottom"><button class="text-button" data-step="1">← Údaje zakázky</button><button class="button primary" data-step="3">Pokračovat k Wordu <span>→</span></button></div>
+      </section>
+      <section class="panel hidden" id="step-3">
+        <div class="panel-heading"><div><h2>Připraveno pro váš Word</h2><p>Vyberte, kam zprávu uložíme. Pak už je na vás.</p></div><span class="section-number">03</span></div>
+        <div class="export-fields">
+          <label>Výstupní složka<div class="input-button"><input id="output_dir" name="output_dir" placeholder="Cesta ke složce zakázky"><button class="button outline" id="choose-folder">Vybrat složku</button></div><small>Složka na počítači, kde běží Klikátko. V cloudové ukázce stáhněte Word tlačítkem níže.</small></label>
+          <label>Název souboru<div class="filename-input"><input id="filename" name="filename" placeholder="Technická zpráva"><span>.docx</span></div></label>
+          <div class="info-card"><span>↗</span><div><strong>Vaše práce zůstane v bezpečí</strong><p>Existující soubor nepřepíšeme. Další verzi uložíme s příponou _02, _03…</p></div></div>
+          <div class="review-box"><h3>Před vytvořením</h3><ul id="review-checks"></ul></div>
+          <div class="success-box hidden" id="export-result" role="status"><strong>Hotovo. Teď už můžete psát.</strong><p id="export-path"></p><button class="button primary" id="download-word">Stáhnout Word <span>↓</span></button></div>
+        </div>
+        <div class="panel-bottom"><button class="text-button" data-step="2">← Zpět k osnově</button><button class="button primary" id="generate-main">Vytvořit Word <span>↗</span></button></div>
+      </section>
+    </div>
+    <aside class="summary">
+      <div class="summary-title"><h2>Vaše zpráva</h2><span>DOCX</span></div>
+      <div class="paper-preview" aria-label="Orientační náhled titulní strany"><div class="paper-office">ING. JIŘÍ KOUDELKA<br><span>projektová kancelář · IK KONZULT</span></div><div class="paper-rule"></div><div id="preview-name" class="paper-name">Název vaší stavby</div><div id="preview-stage" class="paper-stage">Dokumentace pro povolení záměru</div><div class="paper-report">Průvodní list<br>a souhrnná technická zpráva</div><div class="paper-attachment">Příloha A–B</div><div class="paper-image"><span>⌁</span><small>obrázek z vaší předlohy</small></div><div class="paper-footer"><span id="preview-date">říjen 2026</span><span id="preview-author">Ing. Koudelka</span></div></div>
+      <p class="preview-caption">Orientační náhled. Word vychází z původní předlohy.</p>
+      <div class="summary-count"><strong id="summary-count">0</strong><div>vybraných částí osnovy<small id="summary-parents">včetně nadřazených nadpisů</small></div></div>
+      <div class="summary-outline" id="summary-outline"></div>
+      <button class="button primary full-button" id="generate-sidebar">Vytvořit Word <span>↗</span></button>
+      <p class="summary-note">Nadpisy a místa k doplnění připravíme.<br>Odborný obsah dopíšete ve Wordu.</p>
+    </aside>
+    </div>
+    <footer class="main-footer"><span>Vaše osnova. Váš způsob práce.</span><span>Originální číslování kapitol zůstává zachované.</span></footer>
+  </main>
+</div>
+<dialog id="library-dialog"><div class="dialog-heading"><div><div class="eyebrow">VAŠE KNIHOVNA</div><h2 id="library-title">Uložené zakázky</h2></div><button class="icon-button close-dialog" aria-label="Zavřít">×</button></div><div id="library-list"></div></dialog>
+<dialog id="preset-dialog"><div class="dialog-heading"><h2>Uložit vlastní výběr</h2><button class="icon-button close-dialog" aria-label="Zavřít">×</button></div><p>Pojmenujte si tuto osnovu. Údaje zakázky se do předvolby neukládají.</p><label>Název předvolby<input id="preset-name" placeholder="Např. Rekonstrukce ulice" maxlength="160"></label><div class="dialog-bottom"><button class="button outline close-dialog">Zrušit</button><button class="button primary" id="confirm-preset">Uložit předvolbu</button></div></dialog>
+<dialog id="folder-dialog"><div class="dialog-heading"><h2>Kam uložíme zprávu?</h2><button class="icon-button close-dialog" aria-label="Zavřít">×</button></div><p>Vyberte složku zakázky na počítači, kde běží aplikace.</p><div class="input-button"><input id="folder-path" aria-label="Cesta ke složce"><button class="button outline" id="folder-go">Otevřít</button></div><div class="folder-nav"><button class="text-button" id="folder-up">↑ O složku výš</button><div id="folder-drives"></div></div><div id="folder-list"></div><div class="dialog-bottom"><button class="button outline close-dialog">Zrušit</button><button class="button primary" id="confirm-folder">Použít tuto složku</button></div></dialog>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+</body></html>

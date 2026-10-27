@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "source": "Osnova podle dodaného vzoru; právní úplnost neověřena",
+  "nodes": [
+    {
+      "id": "A",
+      "code": "A",
+      "title": "Průvodní list",
+      "hint": "Vyplňte identifikační a souhrnné údaje o záměru.",
+      "children": [
+        {
+          "id": "A1",
+          "code": "A1",
+          "title": "Identifikační údaje",
+          "hint": "Doplňte údaje o stavbě, stavebníkovi a zpracovateli dokumentace.",
+          "children": [
+            {"id": "A1.1", "code": "A1.1", "title": "Údaje o stavbě", "hint": "Doplňte název, místo a základní identifikaci stavby.", "children": []},
+            {"id": "A1.2", "code": "A1.2", "title": "Údaje o stavebníkovi", "hint": "Doplňte identifikační a kontaktní údaje stavebníka či objednatele.", "children": []},
+            {"id": "A1.3", "code": "A1.3", "title": "Údaje o zpracovateli dokumentace", "hint": "Doplňte zpracovatele, odpovědné osoby a příslušná oprávnění.", "children": []},
+            {"id": "A1.4", "code": "A1.4", "title": "Zhotovitel stavby", "hint": "Doplňte zhotovitele, pokud je znám, případně uveďte způsob jeho výběru.", "children": []}
+          ]
+        },
+        {"id": "A2", "code": "A2", "title": "Seznam vstupních podkladů", "hint": "Uveďte použité průzkumy, zaměření, stanoviska a další podklady včetně jejich data a zpracovatele.", "children": []},
+        {"id": "A3", "code": "A3", "title": "Členění stavby na objekty a technická a technologická zařízení", "hint": "Vyjmenujte stavební objekty a technická či technologická zařízení a uveďte jejich členění.", "children": []},
+        {"id": "A4", "code": "A4", "title": "TEA – technicko-ekonomické atributy budov", "hint": "Doplňte požadované technicko-ekonomické atributy budov, případně uveďte, zda se část týká záměru.", "children": []},
+        {
+          "id": "A5",
+          "code": "A5",
+          "title": "Atributy stavby pro stanovení podmínek napojení a provádění činností v ochranných a bezpečnostních pásmech dopravní a technické infrastruktury",
+          "hint": "Doplňte parametry záměru významné pro ochranná a bezpečnostní pásma.",
+          "children": [
+            {"id": "A5.a", "code": "a)", "title": "Hloubka stavby", "hint": "Doplňte maximální hloubku stavby.", "children": []},
+            {"id": "A5.b", "code": "b)", "title": "Výška stavby", "hint": "Doplňte maximální výšku stavby.", "children": []},
+            {"id": "A5.c", "code": "c)", "title": "Předpokládaná kapacita počtu osob ve stavbě", "hint": "Doplňte předpokládanou kapacitu osob.", "children": []},
+            {"id": "A5.d", "code": "d)", "title": "Plánovaný začátek a konec realizace stavby", "hint": "Doplňte plánovaný termín zahájení a dokončení realizace.", "children": []}
+          ]
+        },
+        {"id": "A6", "code": "A6", "title": "Základní parametry dopravní stavby", "hint": "Doplňte základní parametry dopravní stavby a jejího rozsahu.", "children": []}
+      ]
+    },
+    {
+      "id": "B",
+      "code": "B",
+      "title": "Souhrnná technická zpráva",
+      "hint": "Popište území, návrh, technická řešení a organizaci provedení záměru.",
+      "children": [
+        {
+          "id": "B1",
+          "code": "B1",
+          "title": "Celkový popis území a stavby",
+          "hint": "Popište záměr a podmínky v území podle jednotlivých témat.",
+          "children": [
+            {"id": "B1.a", "code": "a)", "title": "Základní popis stavby", "hint": "Popište účel, rozsah, hlavní části a způsob užívání stavby.", "children": []},
+            {"id": "B1.b", "code": "b)", "title": "Charakteristika území a stavebního pozemku", "hint": "Popište polohu, stávající využití, přístup a podmínky pozemku.", "children": []},
+            {"id": "B1.c", "code": "c)", "title": "Údaje o souladu s územně plánovací dokumentací", "hint": "Uveďte soulad záměru s územně plánovací dokumentací a případnými podklady.", "children": []},
+            {"id": "B1.d", "code": "d)", "title": "Výčet a závěry průzkumů", "hint": "Uveďte provedené průzkumy, jejich závěry a použité zaměření.", "children": []},
+            {"id": "B1.e", "code": "e)", "title": "Povolení výjimky z požadavků na výstavbu", "hint": "Uveďte požadované či vydané výjimky, případně jejich stav.", "children": []},
+            {"id": "B1.f", "code": "f)", "title": "Geologická, geomorfologická a hydrogeologická charakteristika území", "hint": "Popište známé geologické, geomorfologické a hydrogeologické poměry.", "children": []},
+            {"id": "B1.g", "code": "g)", "title": "Ochrana území a staveb podle jiných právních předpisů", "hint": "Uveďte dotčené režimy ochrany, jejich rozsah a podmínky.", "children": []},
+            {"id": "B1.h", "code": "h)", "title": "Vliv stavby na okolí, odtokové poměry a asanace", "hint": "Popište vlivy na okolní stavby a pozemky, odtokové poměry a potřebu asanací, demolic či kácení.", "children": []},
+            {"id": "B1.i", "code": "i)", "title": "Zábory zemědělského půdního fondu a pozemků určených k plnění funkce lesa", "hint": "Vyčíslete a popište trvalé i dočasné zábory těchto pozemků.", "children": []},
+            {"id": "B1.j", "code": "j)", "title": "Navrhovaná a vznikající ochranná a bezpečnostní pásma", "hint": "Uveďte dotčená nebo nově vznikající ochranná a bezpečnostní pásma.", "children": []},
+            {"id": "B1.k", "code": "k)", "title": "Požadavky na monitoring a sledování přetvoření", "hint": "Popište požadované sledování stavby a okolí během provádění či užívání.", "children": []},
+            {"id": "B1.l", "code": "l)", "title": "Navrhované parametry záměru", "hint": "Uveďte hlavní rozměrové, kapacitní a výkonové parametry záměru.", "children": []},
+            {"id": "B1.m", "code": "m)", "title": "Rozhodnutí o souhlasu s odchylným řešením", "hint": "Uveďte rozhodnutí o souhlasu s odchylným řešením podle předpisů či technických norem.", "children": []},
+            {"id": "B1.n", "code": "n)", "title": "Limitní bilance staveb", "hint": "Doplňte relevantní limitní bilance, například odpady, emise či zeminy.", "children": []},
+            {"id": "B1.o", "code": "o)", "title": "Požadavky na kapacity veřejných sítí komunikačních vedení a zařízení", "hint": "Popište požadavky záměru na kapacity veřejných sítí a komunikačních zařízení.", "children": []},
+            {"id": "B1.p", "code": "p)", "title": "Základní předpoklady výstavby", "hint": "Uveďte předpokládaný postup, termíny a případné souběžné činnosti.", "children": []},
+            {"id": "B1.q", "code": "q)", "title": "Předčasné užívání a zkušební provoz", "hint": "Uveďte, zda se předpokládá předčasné užívání nebo zkušební provoz.", "children": []},
+            {"id": "B1.r", "code": "r)", "title": "Zeměměřičská činnost pro povolení stavby", "hint": "Uveďte požadovanou zeměměřičskou činnost a způsob předání výsledků.", "children": []}
+          ]
+        },
+        {"id": "B2", "code": "B2", "title": "Urbanistické a základní architektonické řešení", "hint": "Popište urbanistické vazby, kompozici a základní architektonické řešení záměru.", "children": []},
+        {
+          "id": "B3",
+          "code": "B3",
+          "title": "Základní stavebně technické a technologické řešení",
+          "hint": "Popište technické řešení stavby a jeho základní vlastnosti.",
+          "children": [
+            {
+              "id": "B3.1",
+              "code": "B3.1",
+              "title": "Celková koncepce stavebně technického a technologického řešení",
+              "hint": "Shrňte koncepci řešení a související bilance.",
+              "children": [
+                {"id": "B3.1.a", "code": "a)", "title": "Celková koncepce řešení po skupinách objektů", "hint": "Popište koncepci stavebně technického a technologického řešení po skupinách objektů.", "children": []},
+                {"id": "B3.1.b", "code": "b)", "title": "Celkové bilance všech druhů energií", "hint": "Doplňte bilance energií a jejich zdrojů či odběrů.", "children": []},
+                {"id": "B3.1.c", "code": "c)", "title": "Produkce odpadů a emisí a nakládání s vyzískaným materiálem", "hint": "Uveďte druhy a množství odpadů a emisí a způsob nakládání s materiály.", "children": []},
+                {"id": "B3.1.d", "code": "d)", "title": "Požadavky na kapacity veřejných sítí a komunikačních zařízení", "hint": "Popište požadavky na kapacity veřejných sítí komunikačních vedení a zařízení.", "children": []},
+                {"id": "B3.1.e", "code": "e)", "title": "Parametry technologie", "hint": "Uveďte parametry technologických celků a zařízení, pokud jsou součástí stavby.", "children": []}
+              ]
+            },
+            {
+              "id": "B3.2",
+              "code": "B3.2",
+              "title": "Celkové řešení podmínek přístupnosti",
+              "hint": "Popište řešení přístupnosti pro osoby s omezenou schopností pohybu, orientace nebo sluchu.",
+              "children": [
+                {"id": "B3.2.a", "code": "a)", "title": "Zásady řešení pro osoby s omezenou schopností pohybu", "hint": "Popište opatření pro přístup a užívání osobami s omezenou schopností pohybu.", "children": []},
+                {"id": "B3.2.b", "code": "b)", "title": "Zásady řešení pro osoby s omezenou schopností orientace", "hint": "Popište opatření pro osoby s omezenou schopností orientace, včetně osob se zrakovým postižením.", "children": []},
+                {"id": "B3.2.c", "code": "c)", "title": "Zásady řešení pro osoby se sluchovým postižením", "hint": "Popište případná opatření pro osoby se sluchovým postižením.", "children": []},
+                {"id": "B3.2.d", "code": "d)", "title": "Použité výrobky pro bezbariérová řešení", "hint": "Uveďte výrobky a prvky použité pro bezbariérová řešení.", "children": []}
+              ]
+            },
+            {"id": "B3.3", "code": "B3.3", "title": "Zásady bezpečnosti při užívání stavby", "hint": "Popište opatření zajišťující bezpečné užívání stavby.", "children": []},
+            {
+              "id": "B3.4",
+              "code": "B3.4",
+              "title": "Základní technický popis stavebních objektů",
+              "hint": "Popište stávající stav a navržené řešení každého stavebního objektu.",
+              "children": [
+                {
+                  "id": "B3.4.SO101",
+                  "code": "SO 101",
+                  "title": "Komunikace",
+                  "hint": "Doplňte technický popis stavebního objektu komunikace.",
+                  "children": [
+                    {"id": "B3.4.SO101.a", "code": "a)", "title": "Popis stávajícího stavu", "hint": "Popište výchozí technický a provozní stav objektu.", "children": []},
+                    {"id": "B3.4.SO101.b", "code": "b)", "title": "Popis navrženého stavebně konstrukčního a technického řešení", "hint": "Popište navržené konstrukce, materiály, rozměry a technické řešení.", "children": []}
+                  ]
+                },
+                {
+                  "id": "B3.4.SO401",
+                  "code": "SO 401",
+                  "title": "Veřejné osvětlení",
+                  "hint": "Doplňte technický popis stavebního objektu veřejného osvětlení.",
+                  "children": [
+                    {"id": "B3.4.SO401.a", "code": "a)", "title": "Popis stávajícího stavu", "hint": "Popište výchozí technický stav osvětlení a souvisejících rozvodů.", "children": []},
+                    {"id": "B3.4.SO401.b", "code": "b)", "title": "Popis navrženého stavebně konstrukčního a technického řešení", "hint": "Popište navržené osvětlení, zařízení, rozvody a způsob provedení.", "children": []}
+                  ]
+                }
+              ]
+            },
+            {"id": "B3.5", "code": "B3.5", "title": "Technologické řešení", "hint": "Uveďte základní popis technických a technologických objektů a zařízení.", "children": []},
+            {"id": "B3.6", "code": "B3.6", "title": "Zásady požární bezpečnosti", "hint": "Popište základní zásady požární bezpečnosti a související řešení.", "children": []},
+            {"id": "B3.7", "code": "B3.7", "title": "Úspora energie a tepelná ochrana budovy", "hint": "Popište opatření k úspoře energie a tepelnou ochranu, pokud se na záměr vztahují.", "children": []},
+            {"id": "B3.8", "code": "B3.8", "title": "Hygienické požadavky na stavbu a pracovní a komunální prostředí", "hint": "Popište hygienické podmínky, vlivy při výstavbě a související opatření.", "children": []},
+            {"id": "B3.9", "code": "B3.9", "title": "Zásady ochrany stavby před negativními účinky vnějšího prostředí", "hint": "Posuďte relevantní vnější vlivy a popište potřebnou ochranu stavby.", "children": []}
+          ]
+        },
+        {"id": "B4", "code": "B4", "title": "Připojení na technickou infrastrukturu", "hint": "Popište napojení na technickou infrastrukturu a úpravy souvisejících zařízení.", "children": []},
+        {"id": "B5", "code": "B5", "title": "Dopravní řešení a základní údaje o provozu", "hint": "Popište dopravní uspořádání, provoz a hlavní parametry komunikací.", "children": []},
+        {"id": "B6", "code": "B6", "title": "Řešení vegetace a souvisejících terénních úprav", "hint": "Popište vegetační úpravy, terénní úpravy a jejich návaznosti.", "children": []},
+        {"id": "B7", "code": "B7", "title": "Popis vlivu stavby na životní prostředí a jeho ochrana", "hint": "Popište vlivy při výstavbě a užívání a navrženou ochranu životního prostředí.", "children": []},
+        {
+          "id": "B8",
+          "code": "B8",
+          "title": "Celkové vodohospodářské řešení",
+          "hint": "Popište zásobování vodou, odpadní a srážkové vody.",
+          "children": [
+            {"id": "B8.a", "code": "a)", "title": "Zásobování stavby vodou", "hint": "Popište zdroj, způsob zásobování a předpokládanou spotřebu vody.", "children": []},
+            {"id": "B8.b", "code": "b)", "title": "Odpadní vody", "hint": "Uveďte vznik, množství a způsob odvádění nebo nakládání s odpadními vodami.", "children": []},
+            {"id": "B8.c", "code": "c)", "title": "Srážkové vody", "hint": "Popište odvodnění, vsakování či jiné nakládání se srážkovými vodami.", "children": []}
+          ]
+        },
+        {"id": "B9", "code": "B9", "title": "Ochrana obyvatelstva", "hint": "Popište řešení požadavků ochrany obyvatelstva a civilní ochrany.", "children": []},
+        {
+          "id": "B10",
+          "code": "B10",
+          "title": "Zásady organizace výstavby",
+          "hint": "Popište organizaci staveniště a provádění stavby podle jednotlivých témat.",
+          "children": [
+            {"id": "B10.a", "code": "a)", "title": "Napojení staveniště na dopravní a technickou infrastrukturu", "hint": "Popište napojení staveniště a potřebu dopravně inženýrských opatření.", "children": []},
+            {"id": "B10.b", "code": "b)", "title": "Ochrana okolí staveniště a související asanace", "hint": "Popište ochranu okolí a potřebu asanací, demolic či kácení.", "children": []},
+            {"id": "B10.c", "code": "c)", "title": "Vstup, vjezd a přístup po dobu výstavby", "hint": "Popište přístupy na stavbu, přístupové trasy a pochozí trasy včetně řešení pro osoby se zdravotním postižením.", "children": []},
+            {"id": "B10.d", "code": "d)", "title": "Odvodnění staveniště", "hint": "Popište zásady odvodnění staveniště během provádění.", "children": []},
+            {"id": "B10.e", "code": "e)", "title": "Dočasné a trvalé zábory staveniště", "hint": "Vymezte rozsah a dobu záborů potřebných pro staveniště.", "children": []},
+            {"id": "B10.f", "code": "f)", "title": "Ochrana životního prostředí při výstavbě", "hint": "Popište vlivy výstavby na životní prostředí a opatření k jejich omezení.", "children": []},
+            {"id": "B10.g", "code": "g)", "title": "Bezpečnost a ochrana zdraví při práci na staveništi", "hint": "Uveďte zásady BOZP a související požadavky na koordinaci a provádění.", "children": []},
+            {"id": "B10.h", "code": "h)", "title": "Bilance zemních prací a nakládání se zeminou", "hint": "Doplňte bilanci zemních prací, přísun či deponii zemin, nakládání s ornicí a rekultivaci.", "children": []},
+            {"id": "B10.i", "code": "i)", "title": "Limity pro užití výškové mechanizace", "hint": "Uveďte případné limity pro použití výškové mechanizace.", "children": []},
+            {"id": "B10.j", "code": "j)", "title": "Optimální postup výstavby pro stavby drah", "hint": "Popište postup výstavby pro stavby drah, pokud se na záměr vztahuje.", "children": []},
+            {"id": "B10.k", "code": "k)", "title": "Postupné uvádění stavby do provozu a příprava realizace", "hint": "Popište uvádění do provozu a hlavní kroky přípravy a realizace.", "children": []},
+            {"id": "B10.l", "code": "l)", "title": "Bezpečnost leteckého provozu", "hint": "Uveďte případné požadavky na bezpečnost leteckého provozu.", "children": []},
+            {"id": "B10.m", "code": "m)", "title": "Kontrolní prohlídky", "hint": "Uveďte požadované kontrolní prohlídky a jejich návaznost na provádění.", "children": []},
+            {"id": "B10.n", "code": "n)", "title": "Dočasné objekty", "hint": "Uveďte dočasné objekty potřebné při výstavbě.", "children": []},
+            {"id": "B10.o", "code": "o)", "title": "Objízdné a náhradní trasy", "hint": "Popište objízdné, náhradní či přístupové trasy po dobu výstavby.", "children": []},
+            {"id": "B10.p", "code": "p)", "title": "Zvláštní podmínky a požadavky na provádění stavby", "hint": "Uveďte zvláštní podmínky a požadavky pro provádění stavby.", "children": []}
+          ]
+        }
+      ]
+    }
+  ]
+}
